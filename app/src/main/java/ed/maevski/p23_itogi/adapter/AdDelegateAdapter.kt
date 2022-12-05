@@ -1,19 +1,17 @@
 package ed.maevski.p23_itogi.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
-import ed.maevski.p23_itogi.R
+import ed.maevski.p23_itogi.databinding.ItemAdBinding
 import ed.maevski.p23_itogi.model.Ad
 import ed.maevski.p23_itogi.model.Item
 
 class AdDelegateAdapter : AbsListItemAdapterDelegate<Ad, Item, AdDelegateAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textTitle = itemView.findViewById<TextView>(R.id.title)
-        val textContent = itemView.findViewById<TextView>(R.id.content)
+    class ViewHolder(binding: ItemAdBinding): RecyclerView.ViewHolder(binding.root) {
+        val textTitle = binding.title
+        val textContent = binding.content
     }
 
     override fun isForViewType(item: Item, items: MutableList<Item>, position: Int): Boolean {
@@ -21,7 +19,7 @@ class AdDelegateAdapter : AbsListItemAdapterDelegate<Ad, Item, AdDelegateAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
-       return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_ad, parent, false))
+        return ViewHolder(ItemAdBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(item: Ad, holder: ViewHolder, payloads: MutableList<Any>) {

@@ -1,6 +1,5 @@
 package ed.maevski.p23_itogi.decoration
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -12,9 +11,7 @@ import ed.maevski.p23_itogi.R
 
 class MyItemDecoration(private val context: Context): RecyclerView.ItemDecoration() {
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private val fon : Bitmap = context.resources.getDrawable(R.drawable.fon,null).toBitmap()
-
+    private val fon : Bitmap = context.resources.getDrawable(R.drawable.fon).toBitmap()
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)

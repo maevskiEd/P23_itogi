@@ -8,15 +8,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import ed.maevski.p23_itogi.R
+import ed.maevski.p23_itogi.databinding.ItemBinding
 import ed.maevski.p23_itogi.model.Item
 import ed.maevski.p23_itogi.model.Product
 
 class ProductDelegateAdapter :
     AbsListItemAdapterDelegate<Product, Item, ProductDelegateAdapter.ViewHolder>() {
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val icon = itemView.findViewById<ImageView>(R.id.icon)
-        val textName = itemView.findViewById<TextView>(R.id.text_name)
-        val textDesc = itemView.findViewById<TextView>(R.id.text_desc)
+    class ViewHolder(binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val icon = binding.icon
+        val textName = binding.textName
+        val textDesc = binding.textDesc
     }
 
     override fun isForViewType(item: Item, items: MutableList<Item>, position: Int): Boolean {
@@ -24,7 +25,7 @@ class ProductDelegateAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false))
+        return ViewHolder(ItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(item: Product, holder: ViewHolder, payloads: MutableList<Any>) {
